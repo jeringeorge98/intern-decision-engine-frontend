@@ -48,3 +48,8 @@ and loan period based on the form inputs.
 The ApiService component provides methods for making API calls to the backend API.
 It sends loan application information to the backend API and receives a response
 with the approved loan amount and loan period.
+
+### Ticket 102 
+- The age slider is also added to the form component ,this allows user to enter their appropriate age 
+- An error message is shown when the age is not within the suitable range of values
+- Scrollable view to make the ui more easier to use.

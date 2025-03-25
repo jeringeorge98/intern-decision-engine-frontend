@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 // to the decision engine.
 class ApiService {
   final String _baseUrl = 'http://localhost:8080';
+  String responseApproval = '';
   String responseAmount = '';
   String responsePeriod = '';
   String responseError = '';
@@ -16,7 +17,7 @@ class ApiService {
   // requestLoanDecision sends a request to the API to get a loan decision
   // based on the provided personalCode, loanAmount, and loanPeriod.
   Future<Map<String, String>> requestLoanDecision(
-      String personalCode, int loanAmount, int loanPeriod) async {
+      String personalCode, int loanAmount, int loanPeriod, int age) async {
     final response = await httpClient.post(
       Uri.parse('$_baseUrl/loan/decision'),
       headers: {'Content-Type': 'application/json'},
@@ -24,18 +25,21 @@ class ApiService {
         'personalCode': personalCode,
         'loanAmount': loanAmount,
         'loanPeriod': loanPeriod,
+        'age': age,
       }),
     );
 
     try {
       // Decode the API response and update response data variables
       final responseData = jsonDecode(response.body) as Map<String, dynamic>;
+      responseApproval = responseData['loanApproval'].toString();
       responseAmount = responseData['loanAmount'].toString();
       responsePeriod = responseData['loanPeriod'].toString();
       responseError = responseData['errorMessage'].toString();
 
       // Return the response data as a map, handling null values if necessary
       return {
+        'loanApproval': responseData['loanApproval'].toString(),
         'loanAmount': responseAmount != 'null' ? responseAmount : '0',
         'loanPeriod': responsePeriod != 'null' ? responsePeriod : '0',
         'errorMessage': responseError != 'null' ? responseError : '',
