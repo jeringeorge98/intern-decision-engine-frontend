@@ -200,6 +200,7 @@ class _LoanFormState extends State<LoanForm> {
             Column(
               children: [
                 Text('Loan Approval: $_loanApproval'),
+                const SizedBox(height: 8.0),
                 Text(
                     'Approved Loan Amount: ${_loanAmountResult != 0 ? _loanAmountResult : "--"} €'),
                 const SizedBox(height: 8.0),

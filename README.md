@@ -50,6 +50,7 @@ It sends loan application information to the backend API and receives a response
 with the approved loan amount and loan period.
 
 ### Ticket 102 
-- The age slider is also added to the form component ,this allows user to enter their appropriate age 
+- The age slider is also added to the form component ,this allows user to enter their appropriate age using the slider.The age starts from 0 as the validation was done already in the backend but maybe we can do it in the frontend as well. 
 - An error message is shown when the age is not within the suitable range of values
 - Scrollable view to make the ui more easier to use.
+- Loan Approval text was also added to show the Loan status .
