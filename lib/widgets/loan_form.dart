@@ -25,6 +25,7 @@ class _LoanFormState extends State<LoanForm> {
   int _loanAmount = 2500;
   int _loanPeriod = 36;
   int _age = 0;
+  String _loanApproval = '';
   int _loanAmountResult = 0;
   int _loanPeriodResult = 0;
   String _errorMessage = '';
@@ -39,6 +40,7 @@ class _LoanFormState extends State<LoanForm> {
         setState(() {
           int tempAmount = int.parse(result['loanAmount'].toString());
           int tempPeriod = int.parse(result['loanPeriod'].toString());
+          _loanApproval = result['loanApproval'].toString();
 
           if (tempAmount <= _loanAmount || tempPeriod > _loanPeriod) {
             _loanAmountResult = int.parse(result['loanAmount'].toString());
@@ -197,6 +199,7 @@ class _LoanFormState extends State<LoanForm> {
             const SizedBox(height: 16.0),
             Column(
               children: [
+                Text('Loan Approval: $_loanApproval'),
                 Text(
                     'Approved Loan Amount: ${_loanAmountResult != 0 ? _loanAmountResult : "--"} €'),
                 const SizedBox(height: 8.0),
